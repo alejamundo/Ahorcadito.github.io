@@ -1,0 +1,29 @@
+.palabras{
+    color: rgb(255, 252, 252);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 3rem;
+    font-weight: bolder;
+    background-color: rgba(3, 4, 4, 0.718);
+    text-align: center;
+    width: 50rem;
+}
+.men{
+    color: black;
+    font-family: 'Orbitron', sans-serif;
+    font-size: medium;
+    padding: 1rem 20rem 1rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+.uno {
+   color: aqua;
+    display: flex;
+    flex-direction: column;
+    height: 1rem;
+    
+}
+.dos{
+    color: aqua;
+
+    height: 1rem;
+}
