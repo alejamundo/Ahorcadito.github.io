@@ -1,13 +1,8 @@
 //crear palabras secretas
 const arrayPalabras = ["JAVASCRIPT", "ANGULAR", "BOOTSTRAP"];
-
 function palabraSecreta() {
     const posicion = Math.floor(Math.random() * arrayPalabras.length);
     return arrayPalabras[posicion];
-}
-function aggPalabra(palabra) {
-    arrayPalabras.push(palabra.toUpperCase())
-    mensaje("Palabra guardada con éxito", "success")
 }
 function mensaje(mensaje, tipo) {
     const juego = document.querySelector(".juego");
@@ -19,38 +14,65 @@ function mensaje(mensaje, tipo) {
     juego.appendChild(div)
     setTimeout(function () {
         div.remove();
-    }, 1000)
+    }, 3000)
 }
-document.querySelector("[data-add]").addEventListener("click", function () {
-    const palabra = document.querySelector("[data-text]");
-    if (palabra.value == "" || palabra.value == " ") {
-        mensaje("Ingrese una palabra", "danger");
-    } else {
-        aggPalabra(palabra.value);
-        palabra.value = "";
-    }
+function aggPalabra(palabra) {
+    arrayPalabras.push(palabra.toUpperCase())
+    mensaje("Palabra guardada con éxito", "success")
 
-});
-
+}
+const btn = document.querySelector("[data-add]");
+if (btn) {
+    btn.addEventListener("click", function (e) {
+        const palabra = document.querySelector("[data-text]");
+        if (palabra.value == "" || palabra.value == " ") {
+            mensaje("Ingrese una palabra", "danger");
+        } else {
+            aggPalabra(palabra.value);
+            palabra.value = "";
+        }
+        
+    });
+}
 
 //capturar eventos de teclado
+
 const content_guiones = document.querySelector("[data-guiones]");
-const div_tecla = document.createElement("div");
-div_tecla.className = "palabras";
-content_guiones.appendChild(div_tecla);
+if (content_guiones) {
+    const div_tecla = document.createElement("div");
+    div_tecla.className = "palabras";
+    content_guiones.appendChild(div_tecla);
 
-//crear div con guiones
-const div_Guiones = document.createElement("div");
-div_Guiones.className = "palabras"
-content_guiones.appendChild(div_Guiones);
+    //dibujar ahorcadito
+    const content_ahorcado = document.querySelector("[data-ahorcado]");
+    const title = document.createElement("label");
+    title.className = "label"
+    title.innerText = "Inserte una Letra"
+    content_ahorcado.appendChild(title);
 
-let palabra_Adivinar = [];
+    const div_muneco = document.createElement("div");
+    div_muneco.className = "muneco";
+    content_ahorcado.appendChild(div_muneco);
+    //div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" width="100" height="100">`
+    //crear div con guiones
+    const div_Guiones = document.createElement("div");
+    div_Guiones.className = "palabras"
+    content_guiones.appendChild(div_Guiones);
+    let palabra_Adivinar = [];
 let palabra_Mostrar = [];
 let num_Intentos = 5;
 var letra = "";
-var palabra = palabraSecreta();
+
 //busco pocision de la palabra en el array
 function iniciar_Juego() {
+    palabra_Adivinar = [];
+    palabra_Mostrar = [];
+    num_Intentos = 5;
+    div_tecla.innerText = "";
+    div_Guiones.innerText = ""
+    var palabra = palabraSecreta();
+    console.log(arrayPalabras.length);
+    div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" width="100" height="100">`
     var pos = 0;
     for (let i = 0; i < arrayPalabras.length; i++) {
         if (arrayPalabras[i] == palabra) {
@@ -63,22 +85,25 @@ function iniciar_Juego() {
     for (let i = 0; i < palabra.length; i++) {
         palabra_Mostrar.push(" _ ")
     }
-    console.log(palabra_Mostrar)
     div_Guiones.innerText = palabra_Mostrar.join(" ")
 }
 iniciar_Juego();
 
-function acabarJuego () {
-    console.log(palabra_Mostrar);
+function acabarJuego() {
+    var encontro = false;
     for (let i = 0; i < palabra_Mostrar.length; i++) {
-        if (palabra_Mostrar[i]!="_") {
-           
-        }else{
-            alert('Has ganado!!!');
-        }   
+        if (palabra_Mostrar[i] == " _ ") {
+            encontro = true;
+            break;
+        }
     }
-    if (num_Intentos == 0) {
-        alert('Has Perdido!!! Era: ' + palabra_Adivinar.join(''));
+    if (!encontro) {
+        mensaje('Has ganado!!! Era: ' + palabra_Adivinar.join(''), "success")
+        iniciar_Juego()
+    }
+    if (num_Intentos == -1) {
+        mensaje("Has Perdido!!! Era: " + palabra_Adivinar.join(''), "danger")
+        iniciar_Juego();
     }
 }
 
@@ -95,10 +120,43 @@ document.addEventListener('keydown', function (e) {
     }
     if (!palabra_Adivinar.includes(letra)) {
         num_Intentos -= 1;
-        //historial_Letras_Usuario.push(letra);
+        switch (num_Intentos) {
+            case 4:
+                div_muneco.innerHTML = `<img src="../img/ahorcado1.png" alt="Ahorcado1" width="100" height="100">`
+                break;
+            case 3:
+                div_muneco.innerHTML = `<img src="../img/ahorcado2.png" alt="Ahorcado1" width="100" height="100">`
+                break;
+            case 2:
+                div_muneco.innerHTML = `<img src="../img/ahorcado3.png" alt="Ahorcado1" width="100" height="100">`
+                break;
+            case 1:
+                div_muneco.innerHTML = `<img src="../img/ahorcado4.png" alt="Ahorcado1" width="100" height="100">`
+                break;
+            case 0:
+                div_muneco.innerHTML = `<img src="../img/ahorcado5.png" alt="Ahorcado1" width="100" height="100">`
+                break;
+            default:
+                div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" width="100" height="100">`
+                break;
+
+        }
     }
     acabarJuego();
 });
+}
+
+
+
+
+//evento del boton 
+const btn2 = document.querySelector("[data-nuevo]");
+if (btn2) {
+    btn2.addEventListener("click", function () {
+        iniciar_Juego()
+    });
+}
+
 
 
 
