@@ -1,5 +1,9 @@
 //crear palabras secretas
-const arrayPalabras = ["JAVASCRIPT", "ANGULAR", "BOOTSTRAP"];
+const arrayPalabras = ["JAVASCRIPT", "ANGULAR", "BOOTSTRAP", "Python", "Java",
+    "C", "C++", "C#", "PHP", "Swift", "Matlab", "Visual", "Ruby", "Laravel", "Django", "Net Framework",
+    "Symfony", "React Native", "Flutter", "SQL", " Rust", "TypeScript", "Swift", "Perl", "Go", "Kotlin"
+    , "Scheme", "Erlang", "Elixir", "Pascal", "Postscript", "Haskell", "Scala", "Lava"];
+
 function palabraSecreta() {
     const posicion = Math.floor(Math.random() * arrayPalabras.length);
     return arrayPalabras[posicion];
@@ -31,7 +35,7 @@ if (btn) {
             aggPalabra(palabra.value);
             palabra.value = "";
         }
-        
+
     });
 }
 
@@ -59,91 +63,90 @@ if (content_guiones) {
     div_Guiones.className = "palabras"
     content_guiones.appendChild(div_Guiones);
     let palabra_Adivinar = [];
-let palabra_Mostrar = [];
-let num_Intentos = 5;
-var letra = "";
+    let palabra_Mostrar = [];
+    let num_Intentos = 5;
+    var letra = "";
 
-//busco pocision de la palabra en el array
-function iniciar_Juego() {
-    palabra_Adivinar = [];
-    palabra_Mostrar = [];
-    num_Intentos = 5;
-    div_tecla.innerText = "";
-    div_Guiones.innerText = ""
-    var palabra = palabraSecreta();
-    console.log(arrayPalabras.length);
-    div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" width="100" height="100">`
-    var pos = 0;
-    for (let i = 0; i < arrayPalabras.length; i++) {
-        if (arrayPalabras[i] == palabra) {
-            pos = i;
+    //busco pocision de la palabra en el array
+    function iniciar_Juego() {
+        palabra_Adivinar = [];
+        palabra_Mostrar = [];
+        num_Intentos = 5;
+        div_tecla.innerText = "";
+        div_Guiones.innerText = ""
+        var palabra = palabraSecreta();
+        div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" class="imagen">`
+        var pos = 0;
+        for (let i = 0; i < arrayPalabras.length; i++) {
+            if (arrayPalabras[i] == palabra) {
+                pos = i;
+            }
+        }
+        //converti palabra en un arreglo
+        palabra_Adivinar = palabra.split('');
+
+        for (let i = 0; i < palabra.length; i++) {
+            palabra_Mostrar.push(" _ ")
+        }
+        div_Guiones.innerText = palabra_Mostrar.join(" ")
+    }
+    iniciar_Juego();
+
+    function acabarJuego() {
+        var encontro = false;
+        for (let i = 0; i < palabra_Mostrar.length; i++) {
+            if (palabra_Mostrar[i] == " _ ") {
+                encontro = true;
+                break;
+            }
+        }
+        if (!encontro) {
+            mensaje('Has ganado!!! Era: ' + palabra_Adivinar.join(''), "success")
+            iniciar_Juego()
+        }
+        if (num_Intentos == -1) {
+            mensaje("Has Perdido!!! Era: " + palabra_Adivinar.join(''), "danger")
+            iniciar_Juego();
         }
     }
-    //converti palabra en un arreglo
-    palabra_Adivinar = palabra.split('');
 
-    for (let i = 0; i < palabra.length; i++) {
-        palabra_Mostrar.push(" _ ")
-    }
-    div_Guiones.innerText = palabra_Mostrar.join(" ")
-}
-iniciar_Juego();
+    document.addEventListener('keydown', function (e) {
+        letra = e.key;
+        div_tecla.innerText = letra
+        letra = letra.toUpperCase();
 
-function acabarJuego() {
-    var encontro = false;
-    for (let i = 0; i < palabra_Mostrar.length; i++) {
-        if (palabra_Mostrar[i] == " _ ") {
-            encontro = true;
-            break;
+        for (let i = 0; i < palabra_Adivinar.length; i++) {
+            if (palabra_Adivinar[i] == letra) {
+                palabra_Mostrar[i] = letra;
+                div_Guiones.innerText = palabra_Mostrar.join(" ")
+            }
         }
-    }
-    if (!encontro) {
-        mensaje('Has ganado!!! Era: ' + palabra_Adivinar.join(''), "success")
-        iniciar_Juego()
-    }
-    if (num_Intentos == -1) {
-        mensaje("Has Perdido!!! Era: " + palabra_Adivinar.join(''), "danger")
-        iniciar_Juego();
-    }
-}
+        if (!palabra_Adivinar.includes(letra)) {
+            num_Intentos -= 1;
+            switch (num_Intentos) {
+                case 4:
+                    div_muneco.innerHTML = `<img src="../img/ahorcado1.png" alt="Ahorcado1" class="imagen">`
+                    break;
+                case 3:
+                    div_muneco.innerHTML = `<img src="../img/ahorcado2.png" alt="Ahorcado1" class="imagen">`
+                    break;
+                case 2:
+                    div_muneco.innerHTML = `<img src="../img/ahorcado3.png" alt="Ahorcado1" class="imagen">`
+                    break;
+                case 1:
+                    div_muneco.innerHTML = `<img src="../img/ahorcado4.png" alt="Ahorcado1" class="imagen">`
+                    break;
+                case 0:
+                    div_muneco.innerHTML = `<img src="../img/ahorcado5.png" alt="Ahorcado1" class="imagen">`
+                    break;
+                default:
+                    div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" class="imagen">`
+                    break;
 
-document.addEventListener('keydown', function (e) {
-    letra = e.key;
-    div_tecla.innerText = letra
-    letra = letra.toUpperCase();
-
-    for (let i = 0; i < palabra_Adivinar.length; i++) {
-        if (palabra_Adivinar[i] == letra) {
-            palabra_Mostrar[i] = letra;
-            div_Guiones.innerText = palabra_Mostrar.join(" ")
+            }
         }
-    }
-    if (!palabra_Adivinar.includes(letra)) {
-        num_Intentos -= 1;
-        switch (num_Intentos) {
-            case 4:
-                div_muneco.innerHTML = `<img src="../img/ahorcado1.png" alt="Ahorcado1" width="100" height="100">`
-                break;
-            case 3:
-                div_muneco.innerHTML = `<img src="../img/ahorcado2.png" alt="Ahorcado1" width="100" height="100">`
-                break;
-            case 2:
-                div_muneco.innerHTML = `<img src="../img/ahorcado3.png" alt="Ahorcado1" width="100" height="100">`
-                break;
-            case 1:
-                div_muneco.innerHTML = `<img src="../img/ahorcado4.png" alt="Ahorcado1" width="100" height="100">`
-                break;
-            case 0:
-                div_muneco.innerHTML = `<img src="../img/ahorcado5.png" alt="Ahorcado1" width="100" height="100">`
-                break;
-            default:
-                div_muneco.innerHTML = `<img src="../img/inicio.png" alt="Ahorcado1" width="100" height="100">`
-                break;
-
-        }
-    }
-    acabarJuego();
-});
+        acabarJuego();
+    });
 }
 
 

@@ -1,19 +1,22 @@
 /* Comunes para todas las clases */
 /* <!-- Logo y titulo del juego --> */
-.logo { 
+.logo {
     display: flex;
-    justify-content: center;  
-    height: 7.5rem; 
+    justify-content: center;
+    height: 7.5rem;
     margin-bottom: 3.5rem;
 }
-.text{
+
+.text {
     color: white;
     font-family: 'Orbitron', sans-serif;
     font-size: x-large;
 }
-.im{
+
+.im {
     margin-left: 6rem;
 }
+
 /* <!-- zona de juego --> */
 .principal {
     height: 35rem;
@@ -23,11 +26,12 @@
 
     background-image: url("../img/fonodo1.jpg");
     background-position: center;
-	background-attachment: contain;
+    background-attachment: contain;
     background-repeat: no-repeat;
     background-size: cover;
-    background-blend-mode:hue;
+    background-blend-mode: hue;
 }
+
 /* <!-- seccion del juego --> */
 .juego {
     margin-top: 2rem;
@@ -37,27 +41,83 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
 }
-.label1{
+
+.label1 {
     font-family: 'Orbitron', sans-serif;
     font-size: larger;
 }
+
 /* <!-- seccion de los botones --> */
 .botones {
     display: flex;
     justify-content: center;
 }
+
 .bton {
     width: 13rem;
     background-color: black;
     font-family: 'Orbitron', sans-serif;
     font-size: medium;
 }
-.bton1{
+
+.bton1 {
     padding: 1.25rem;
     width: 13rem;
     background-color: black;
     font-family: 'Orbitron', sans-serif;
     font-size: medium;
 }
+
+/*footer*/
+footer {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem;
+    padding-top: 2rem;
+}
+
+.bi1 {
+    font-size: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.bi1:hover {
+    color: rgb(30, 108, 177);
+    font-size: 2rem;
+
+}
+
+@media (max-width: 500px) {
+    .text {
+        font-size: 1.3rem;
+    }
+
+    .botones {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+    }
+    .juego {   
+        height: 15rem; 
+    }
+}
+@media (max-width:900px) {
+    .botones {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+    }
+    .juego {   
+        height: 15rem; 
+    }
+} 

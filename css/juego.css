@@ -6,13 +6,13 @@
     background-color: rgba(3, 4, 4, 0.718);
     text-align: center;
     width: 50rem;
-    margin-bottom: 2rem;
+   
 }
 .men{
     color: black;
     font-family: 'Orbitron', sans-serif;
     font-size: medium;
-    padding: 1rem 20rem 1rem;
+    padding: 1rem 12rem 1rem 12rem;
     margin-top: 1rem;
     margin-bottom: 3rem;
     font-weight: bolder;
@@ -31,10 +31,139 @@
 }
    
 .muneco{
-   
-    display: block;
     width: 50rem;
-    font-family: 'Orbitron', sans-serif;
-    font-size:xx-large;
+}
+.botones{
+    margin-bottom: 2rem;
+    margin-top: 5rem;
+}
+.imagen{
+   display: flex;
+   width: 8rem;
+   margin-left: 5rem;
+}
 
+
+@media (max-width:400px) {
+    .palabras{
+        font-size: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.571);
+        width: 17.5rem; 
+    }
+    .label{
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.3rem; 
+        margin-top: 2rem;  
+    }
+    .ahorcado{
+        width: 17.5rem;
+        margin-top: 2rem;
+    }
+    .muneco{
+        width: 17.5rem;
+    }
+    .imagen{
+        display: flex;
+        width: 8rem;
+        margin-left: 5rem;
+     }
+     .men{
+        font-size: 1rem;
+        padding: 1rem 5rem 1rem 5rem;
+    }
+}
+@media (min-width:400px)and (max-width:600px) {
+    .palabras{
+        font-size: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.571);
+        width: 24.2rem; 
+    }
+    .label{
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.3rem; 
+        margin-top: 2rem;  
+    }
+    .ahorcado{
+        width: 24.2rem;
+        margin-top: 2rem;
+    }
+    .muneco{
+        width: 24.2rem;
+    }
+    .imagen{
+        display: flex;
+        width: 8rem;
+        margin-left: 9rem;
+     }
+     .men{
+        font-size: 1rem;
+        padding: 1rem 5rem 1rem 5rem;
+    }
+}
+
+@media (min-width:600px)and (max-width:900px) {
+    .palabras{
+        font-size: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.571);
+        width: 30rem; 
+        
+    }
+    .ahorcado{
+        width: 30rem;
+        margin-top: 2rem;
+    }
+    .muneco{
+        width: 30rem;
+    }
+    .imagen{
+        display: flex;
+        width: 8rem;
+        margin-left: 12rem;
+     }
+     .men{
+        font-size: 1rem;
+        padding: 1rem 8rem 1rem 8rem;
+    }
+}
+
+@media (min-width:900px)and (max-width:1000px) {
+    .palabras{
+        font-size: 1.5rem;
+        background-color: rgba(0, 0, 0, 0.571);
+        width: 40rem; 
+    }
+    .ahorcado{
+        width: 40rem;
+    }
+    .muneco{
+        width: 40rem;
+    }
+    .imagen{
+        display: flex;
+        width: 8rem;
+        margin-left: 16rem;
+     }
+     .men{
+        font-size: 1rem;
+        padding: 1rem 10rem 1rem 10rem;
+    }
+}
+
+@media (min-width:1000px)and (max-width:2000px) {
+    .palabras{
+        width: 60rem; 
+    }
+    .ahorcado{
+        width: 60rem;
+    }
+    .muneco{
+        width: 60rem;
+    }
+    .imagen{
+        margin-left: 25rem;
+     }
+     .men{
+        font-size: 1rem;
+        padding: 1rem 20rem 1rem 20rem;
+    }
 }
